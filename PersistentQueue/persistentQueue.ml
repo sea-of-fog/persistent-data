@@ -3,9 +3,6 @@
 (* and the second one the back of the list *)
 (* Invariant: if the queue is nonempty, the front is nonempty *)
 
-(* TODO: fix pop_opt *)
-(* TODO: uncomment pop_opt in .mli *)
-
 type 'a queue =
     | Empty
     | Queue of 'a * 'a list * 'a list
@@ -38,13 +35,11 @@ let pop q =
                                 end
                           end
 
-(* let pop_opt q = *)
-(*     match q with *)
-(*     | Empty -> None *)
-(*     | Queue(a, fs, bs) -> begin match fs with *)
-(*                                 | f::fs -> Some Queue(f, fs, bs) *)
-(*                                 | [] -> begin match bs with *)
-(*                                               | b::bs -> Some Queue(b, List.rev bs, []) *)
-(*                                               | [] -> Some Empty *)
-(*                                         end *)
-(*                           end *)
+let pop_opt q =
+    match q with
+    | Empty -> None
+    | Queue(a, f::fs, bs) -> Some (Queue(f, fs, bs))
+    | Queue(a, [], bs) -> let fs = List.rev bs
+                              in begin match fs with
+                                       | f::fs -> Some (Queue(f, fs, []))
+                                       | [] -> Some (Empty) end
