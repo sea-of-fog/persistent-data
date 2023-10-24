@@ -27,13 +27,11 @@ let peek_opt q =
 let pop q =
     match q with
     | Empty -> failwith "Empty queue"
-    | Queue(a, fs, bs) -> begin match fs with
-                        | f::fs -> Queue(f, fs, bs)
-                        | [] -> begin match bs with
-                                      | b::bs -> Queue(b, List.rev bs, [])
-                                      | [] -> Empty
-                                end
-                          end
+    | Queue(a, f::fs, bs) -> Queue(f, fs, bs)
+    | Queue(a, [], bs) -> let fs = List.rev bs
+                              in begin match fs with
+                                       | f::fs -> Queue(f, fs, [])
+                                       | [] -> Empty end
 
 let pop_opt q =
     match q with
