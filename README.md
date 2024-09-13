@@ -3,6 +3,7 @@
 ## Description
 
 This repository is a playground for me to try and implement the persistent data structures I've seen in Functional Programming class.
+The implementation language is OCaml.
 
 ## Todo
 1. [ ] Implement Random Acess Lists
@@ -11,3 +12,5 @@ This repository is a playground for me to try and implement the persistent data 
 4. [ ] Implement random access lists with overflow digit 2
 5. [ ] Add patterns laziness to difference lists
 6. [ ] Add descriptions and ocamldoc to all the modules
+7. [ ] Finish avl.ml
+8. [ ] Bring over binomial queues
